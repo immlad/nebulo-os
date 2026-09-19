@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nebulo OS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="wallpaper"></div>
+
+  <div id="jumpscare-overlay">
+    <img src="https://i.imgur.com/3ZQ3ZQz.jpeg" />
+  </div>
+
+  <div id="unsaved-banner">You have unsaved work.</div>
+
+  <!-- Auth -->
+  <div id="auth-overlay">
+    <div id="auth-card">
+      <h1>Nebulo OS</h1>
+      <p>Admin username: <strong>minh</strong></p>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-mode="login">Login</div>
+        <div class="auth-tab" data-mode="signup">Sign up</div>
+      </div>
+
+      <div class="auth-field">
+        <label>Username</label>
+        <input id="auth-username" />
+      </div>
+
+      <div class="auth-field">
+        <label>Password</label>
+        <input id="auth-password" type="password" />
+      </div>
+
+      <div class="auth-actions">
+        <button id="auth-cancel" class="btn">Guest</button>
+        <button id="auth-submit" class="btn btn-primary">Continue</button>
+      </div>
+
+      <div id="auth-error"></div>
+    </div>
+  </div>
+
+  <!-- OS -->
+  <div id="os-root">
+    <div id="topbar">
+      <div id="topbar-left">
+        <div id="topbar-logo"></div>
+        <div id="topbar-title">Nebulo OS</div>
+      </div>
+      <div id="topbar-right">
+        <div class="pill"><span id="topbar-user-label"></span></div>
+        <div class="pill"><span id="topbar-status">Unsaved</span></div>
+      </div>
+    </div>
+
+    <div id="windows-layer">
+      <!-- Settings -->
+      <div class="window hidden" id="win-settings">
+        <div class="window-header" data-win="win-settings">
+          <div class="window-controls">
+            <div class="win-btn win-close" data-action="close"></div>
+            <div class="win-btn win-min" data-action="minimize"></div>
+            <div class="win-btn win-full" data-action="fullscreen"></div>
+          </div>
+          <div class="window-title">Settings</div>
+        </div>
+
+        <div class="window-body">
+          <div class="settings-grid">
+            <div class="settings-sidebar">
+              <div class="settings-item active" data-settings-section="appearance">Appearance</div>
+              <div class="settings-item" data-settings-section="account">Account</div>
+              <div class="settings-item" id="settings-admin-item" data-settings-section="admin">Admin</div>
+            </div>
+
+            <div class="settings-main">
+              <div class="settings-section" id="settings-appearance">
+                <h3>Wallpaper</h3>
+                <select id="settings-wallpaper-select">
+                  <option value="default">Default</option>
+                  <option value="blue">Blue</option>
+                  <option value="sunset">Sunset</option>
+                  <option value="mono">Mono</option>
+                </select>
+              </div>
+
+              <div class="settings-section" id="settings-account">
+                <h3>Password</h3>
+                <input id="settings-new-password" type="password" placeholder="New password" />
+                <button id="settings-save-password" class="btn btn-primary">Save</button>
+              </div>
+
+              <div class="settings-section" id="settings-admin">
+                <h3>Admin Panel</h3>
+                <div id="admin-users-list"></div>
+                <button id="admin-jumpscare-btn" class="btn btn-primary">Jumpscare</button>
+                <h4>Create App</h4>
+                <input id="admin-app-name" placeholder="App name" />
+                <input id="admin-app-url" placeholder="App URL" />
+                <button id="admin-create-app-btn" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nebulo -->
+      <div class="window hidden" id="win-nebulo">
+        <div class="window-header" data-win="win-nebulo">
+          <div class="window-controls">
+            <div class="win-btn win-close" data-action="close"></div>
+            <div class="win-btn win-min" data-action="minimize"></div>
+            <div class="win-btn win-full" data-action="fullscreen"></div>
+          </div>
+          <div class="window-title">Nebulo</div>
+        </div>
+
+        <div class="window-body">
+          <div class="nebulo-layout">
+            <div class="nebulo-sidebar">
+              <h3>Links</h3>
+              <div id="nebulo-list"></div>
+            </div>
+            <div class="nebulo-main">
+              <span id="nebulo-current-url"></span>
+              <iframe id="nebulo-iframe"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="dynamic-windows"></div>
+    </div>
+
+    <div id="taskbar">
+      <div id="dock">
+        <div class="dock-icon" data-open="win-settings"><span>Settings</span></div>
+        <div class="dock-icon" data-open="win-nebulo"><span>Nebulo</span></div>
+      </div>
+      <div class="pill"><span id="taskbar-clock"></span></div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
